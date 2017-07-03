@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hotconfig:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ROOT.war">
+      <element id="artifact" artifact-name="hotconfig:war exploded" />
+    </root>
+  </artifact>
+</component>

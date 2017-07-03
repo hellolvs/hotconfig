@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qunar.hotconfig.dao.ConfFileDao">
+
+    <select id="selectByTableName" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT
+        <foreach collection="columnList" item="column" separator=",">
+            ${column}
+        </foreach>
+        from
+        ${fileId}
+    </select>
+
+    <select id="selectByTableNameAndId" resultType="java.util.Map" parameterType="java.util.Map">
+        select
+        <foreach collection="columnList" item="column" separator=",">
+            ${column}
+        </foreach>
+        from
+        ${fileId}
+        where
+        id=#{id}
+    </select>
+
+    <select id="selectColumns" resultType="java.lang.String" parameterType="java.lang.String">
+        select column_name from information_schema.columns where TABLE_SCHEMA = 'conffilesmanage' and table_name = #{fileId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertByTableName" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.Map">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO ${fileId} (${columns}) VALUES (${columnsValues});
+    </insert>
+
+    <insert id="batchInsertByTableName" parameterType="java.util.Map">
+        INSERT INTO ${fileId} (${columns}) VALUES ${columnsValues};
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="java.util.Map">
+        update ${fileId} set ${updateValues} where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.util.Map">
+        delete from ${fileId} where id = #{id}
+    </delete>
+
+    <delete id="deleteTable">
+        DELETE FROM ${fileId}
+    </delete>
+
+    <select id="count" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(1) from ${fileId}
+    </select>
+
+</mapper>

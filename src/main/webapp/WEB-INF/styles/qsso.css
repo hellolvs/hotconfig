@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-color: #fafafa;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+}
+
+.navbar-default {
+    background-color: #337ab7;
+    border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-brand {
+    color: #f5f5f5;
+}
+
+.content {
+    padding-top: 70px;
+    border: 20px solid #fafafa;
+    color: #fff;
+    width: 350px;
+    font-size: 14px;
+    margin: 100px auto;
+}
+
+.qssologIn {
+    color: #fff;
+    height: 50px;
+    box-shadow: 5px 10px 10px #9E9E9E;
+}

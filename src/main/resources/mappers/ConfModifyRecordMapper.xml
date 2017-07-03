@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qunar.hotconfig.dao.ConfModifyRecordDao">
+
+    <resultMap id="BaseResultMap" type="com.qunar.hotconfig.model.ConfModifyRecordModel">
+        <result column="id" property="id"/>
+        <result column="file_id" property="fileId"/>
+        <result column="item_id" property="itemId"/>
+        <result column="crud_type" property="crudType"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, file_id, item_id, crud_type
+    </sql>
+
+    <select id="selectModifyRecordByFileId" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        conf_modify_record
+        WHERE
+        file_id = #{fileId}
+    </select>
+
+    <select id="selectModifyRecord" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        conf_modify_record
+        WHERE
+        file_id = #{0}
+        AND
+        item_id = #{1}
+    </select>
+
+    <insert id="insertConfModifyRecord" parameterType="ConfModifyRecordModel">
+        INSERT INTO conf_modify_record
+        (
+        file_id,
+        item_id,
+        crud_type
+        )
+        VALUES
+        (
+        #{fileId},
+        #{itemId},
+        #{crudType}
+        )
+    </insert>
+
+    <delete id="deleteModifyRecordByFileId" parameterType="String">
+        DELETE FROM
+        conf_modify_record
+        WHERE
+        file_id = #{fileId}
+    </delete>
+
+    <delete id="deleteModifyRecordById" parameterType="Integer">
+        DELETE FROM
+        conf_modify_record
+        WHERE
+        id = #{id}
+    </delete>
+
+    <update id="updateModifyRecord" parameterType="ConfModifyRecordModel">
+        UPDATE
+        conf_modify_record
+        SET
+        file_id = #{fileId},
+        item_id = #{itemId},
+        crud_type = #{crudType}
+        WHERE
+        file_id = #{fileId}
+        AND
+        item_id = #{itemId}
+    </update>
+
+</mapper>

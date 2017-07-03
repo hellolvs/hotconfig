@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: qunar.tc.qconfig:qconfig-client:1.2.5">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/qunar/tc/qconfig/qconfig-client/1.2.5/qconfig-client-1.2.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/qunar/tc/qconfig/qconfig-client/1.2.5/qconfig-client-1.2.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/qunar/tc/qconfig/qconfig-client/1.2.5/qconfig-client-1.2.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

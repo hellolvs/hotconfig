@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .model {
+            border: 1px solid black;
+            margin: 0;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        .model th, .model td {
+            border: 1px solid black;
+        }
+
+        .modelTd {
+            padding-top: 5px;
+            text-align: center;
+        }
+
+        .beforeMod {
+            color: #ffffff;
+            text-decoration: line-through;
+            background-color: #FAA732;
+        }
+
+        .afterMod {
+            color: #ffffff;
+            background-color: #87CEFA;
+        }
+
+        .modelAdd {
+            color: #ffffff;
+            background-color: #5EB95E;
+        }
+
+        .modelDel {
+            color: #ffffff;
+            background-color: #CC3333;
+        }
+    </style>
+</head>
+<body>
+<h1>${information}</h1>
+<table class="description">
+    <tr>
+        <td style="width:50px; height:30px; background-color:#5EB95E"></td>
+        <td>代表增加</td>
+        <td style="width:50px; height:30px; background-color:#CC3333"></td>
+        <td>代表删除</td>
+        <td style="width:50px; height:30px; background-color:#FAA732"></td>
+        <td>代表修改前的值</td>
+        <td style="width:50px; height:30px; background-color:#87CEFA"></td>
+        <td>代表修改后的值</td>
+    </tr>
+</table>
+
+<table class="model">
+    <tr>
+        #foreach(${column} in ${columnList})
+            <th>${column}</th>
+        #end
+    </tr>
+    #foreach(${diffResult} in ${diffResults})
+        #if(${diffResult.crudType}==0)
+            <tr class="modelAdd">
+                #foreach(${column} in ${columnList})
+                    <td>${diffResult.model.get(${column})}</td>
+                #end
+            </tr>
+        #end
+        #if(${diffResult.crudType}==1)
+            <tr class="modelDel">
+                #foreach(${column} in ${columnList})
+                    <td>${diffResult.model.get(${column})}</td>
+                #end
+            </tr>
+        #end
+        #if(${diffResult.crudType}==2)
+            <tr>
+                #foreach(${column} in ${columnList})
+                    #if($diffResult.columnArr.contains(${column}))
+                        <td class="beforeMod">${diffResult.model.get(${column})}</td>
+                    #else
+                        <td>${diffResult.model.get(${column})}</td>
+                    #end
+                #end
+            </tr>
+        #end
+        #if(${diffResult.crudType}==3)
+            <tr>
+                #foreach(${column} in ${columnList})
+                    #if($diffResult.columnArr.contains(${column}))
+                        <td class="afterMod">${diffResult.model.get(${column})}</td>
+                    #else
+                        <td>${diffResult.model.get(${column})}</td>
+                    #end
+                #end
+            </tr>
+        #end
+    #end
+</table>
+<h1>发布人：${userId} 发布时间：${time}</h1>
+</body>
+</html>
